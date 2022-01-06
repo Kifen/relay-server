@@ -1,8 +1,10 @@
 use ethers::{prelude::*, utils::Ganache};
+use serde::Deserialize;
+use serde_json::Value;
 use std::error::Error;
 use url::ParseError;
-// use std::convert::TryFrom;
 
+#[derive(Debug)]
 pub struct Relayer<P> {
     client: SignerMiddleware<P, LocalWallet>,
 }
@@ -17,6 +19,12 @@ impl<P: Middleware> Relayer<P> {
 
     pub fn provider(rpc_url: String) -> Result<Provider<Http>, ParseError> {
         Provider::<Http>::try_from(rpc_url)
+    }
+
+    pub fn generate_typed_data(&self) -> Result<(), Box<dyn Error>> {
+        let typed_data: Value = serde_json::from_str("./typed_data.json")?;
+        println!("{}", typed_data);
+        Ok(())
     }
 }
 
