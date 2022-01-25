@@ -20,3 +20,6 @@ serde = {version="1.0.132", features=["derive"]}
 url = "2.2.2"
 dotenv = "0.15.0"
 thiserror = "1.0.30"
+ethers-derive-eip712 = "0.2.2"
+ethers-core = "0.6.3"
+ethers-contract = "0.6.2"
